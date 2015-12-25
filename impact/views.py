@@ -33,7 +33,9 @@ def jobs_info(request):
 	return render(request, 'impact/job.html')
 
 def gallery_info(request):
-	return render(request, 'impact/gallery.html')
+	image_list = gallery_image.objects.all()
+	context = {'image_list':image_list}
+	return render(request, 'impact/gallery.html', context)
 
 def contactus_info(request):
 	return render(request, 'impact/contactus.html')
