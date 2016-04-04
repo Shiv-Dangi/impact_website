@@ -2,15 +2,27 @@
 {% load staticfiles %}
 
 {% block content %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
     <style>
         .header {
-            background-color: #F5F5F5;
             color: #36A0FF;
-            height: 70px;
             font-size: 27px;
             padding: 10px;
         }
-    </style>  
+
+        .bigicon {
+            font-size: 35px;
+            color: #36A0FF;
+        }
+    </style>
+
+    <script>
+        function fun() {
+            alert("Your message is sent to admin!");
+        }
+    </script>
+
     <section id="page-breadcrumb">
         <div class="vertical-center sun">
              <div class="container">
@@ -30,55 +42,84 @@
     <section id="projects" class="padding-top">
         <div class="container">
             <div class="row">
-                <div class="col-md-offset-2 col-md-9 col-sm-9 col-sm-offset-2">
-                    <!--contact form start--> 
-                        <div class="well well-sm">
-                            <form class="form-horizontal" method="post">
-                            {% csrf_token %}
-                                <fieldset>
-                                    <legend class="text-center header">Contact for Job</legend>
-                                    <div class="form-group">
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <input id="fname" name="fname" type="text" placeholder="Full Name" class="form-control" onkeypress="return onlyChars(event)" required="required">
-                                        </div>
-                                    </div>
+                <div class="col-md-12">
+                    <div class="well well-sm">
+                        <form class="form-horizontal" method="post">
+                        {% csrf_token %}
+                            <fieldset>
+                                <legend class="text-center header">Contact For Job</legend>
 
-                                    <div class="form-group">
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <input id="subject" name="subname" type="text" placeholder="Address" class="form-control" onkeypress="return onlyChars(event)" required="required">
-                                        </div>
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                    <div class="col-md-8">
+                                        <input id="fname" name="fname" type="text" placeholder="Full Name" class="form-control" onkeypress="return onlyChars(event)" required="required">
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+                                    <div class="col-md-8">
+                                        <input id="lname" name="lname" type="text" placeholder="Last Name" class="form-control" onkeypress="return onlyChars(event)" required="required">
+                                    </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <input id="email" name="email" type="email" required data-validation-required-message="Please enter your email-id." placeholder="Email Address" class="form-control" required="required">
-                                        </div>
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+                                    <div class="col-md-8">
+                                        <input id="email" name="email" type="email" required data-validation-required-message="Please enter your email-id." placeholder="Email Address" class="form-control" required="required">
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <input id="phone" name="phone_no" type="text" placeholder="Phone No" class="form-control" onkeypress="return onlyNumbers(event)" maxlength="12" minlength="10" required="required">
-                                        </div>
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                                    <div class="col-md-8">
+                                        <input id="phone" name="phone_no" type="text" placeholder="Phone No" class="form-control" onkeypress="return onlyNumbers(event)" maxlength="12" minlength="10" required="required">
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-10 col-md-offset-1">
-                                            <textarea class="form-control" id="message" name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7" required="required"></textarea>
-                                        </div>
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" id="message" name="message" placeholder="Enter your massage for us here. We will get back to you within 2 business days." rows="7" required="required"></textarea>
                                     </div>
+                                </div>
 
-                                    <div class="form-group">
-                                        <div class="col-md-12 text-center">
-                                            <button type="submit" class="btn btn-primary btn-lg" onclick="fun()" >Submit</button>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-success btn-lg" onclick="fun()" >Submit</button>
                                     </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    <!--contact form end-->                
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <!--/#projects-->
+
+
+    <!-- javascript for contact page-->        
+    <script>
+        function myFunction() {
+            document.getElementById("demo").innerHTML = "Hello World";
+        }
+        function onlyChars(event)
+        {
+            var e =event;
+            var charCode = e.which || e.keyCode;
+            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || charCode == 8 || charCode == 9 || charCode == 32)
+                return true;
+            else 
+                return false;
+        }
+        function onlyNumbers(event)             
+        {
+            var e =event; 
+            var charCode = e.which || e.keyCode;
+                if ((charCode >= 48 && charCode <= 57) || charCode == 8 || charCode == 37 || charCode == 39 || charCode == 9) 
+                     return true;
+                else
+                     return false;
+        }
+    </script>
 {% endblock %}

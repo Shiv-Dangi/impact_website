@@ -38,6 +38,12 @@ def gallery_info(request):
 	return render(request, 'impact/gallery.html', context)
 
 def contactus_info(request):
-	return render(request, 'impact/contactus.html')
+	if request.method == 'GET':
+		return render(request, 'impact/contactus.html')
+	else:	
+		data = contactus(fname= request.POST['fname'], lname= request.POST['lname'], email= request.POST['email'], phone_no=request.POST['phone'], message=request.POST['message'])
+		data.save()
+		return HttpResponseRedirect('#')
+	
 
 	
